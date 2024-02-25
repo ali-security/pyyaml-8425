@@ -86,7 +86,7 @@ Function Build-Wheel($python_path) {
     & $python -W "ignore:DEPRECATION" -m pip install --upgrade pip
 
     # ensure required-for-build packages are present and up-to-date
-    & $python -W "ignore:DEPRECATION" -m pip install --upgrade cython wheel setuptools --no-warn-script-location
+    & $python -W "ignore:DEPRECATION" -m pip install --force-reinstall cython==0.29.6 wheel==0.33.1 setuptools==40.8.0 --no-warn-script-location
 
     pushd libyaml
     git clean -fdx
