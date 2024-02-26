@@ -99,13 +99,13 @@ Function Build-Wheel($python_path) {
     cmake.exe --build . --config Release
     popd
 
-    & $python setup.py --with-libyaml build_ext -I libyaml\include -L libyaml\build\Release -D YAML_DECLARE_STATIC build test bdist_wheel
+    & $python setup.py --with-libyaml build_ext -I libyaml\include -L libyaml\build\Release -D YAML_DECLARE_STATIC build test bdist_wheel sdist
 }
 
 Function Upload-Artifacts() {
     Write-Output "uploading artifacts..."
 
-    foreach($wheel in @(Resolve-Path dist\*.whl)) {
+    foreach($wheel in @(Resolve-Path dist\*)) {
         Push-AppveyorArtifact $wheel
     }
 }
@@ -113,25 +113,25 @@ Function Upload-Artifacts() {
 Bootstrap
 
 $pythons = @(
-"C:\Python27"
-"C:\Python27-x64"
-"C:\Python34"
-"C:\Python34-x64"
-"C:\Python35"
-"C:\Python35-x64"
-"C:\Python36"
-"C:\Python36-x64"
+# "C:\Python27"
+# "C:\Python27-x64"
+# "C:\Python34"
+# "C:\Python34-x64"
+# "C:\Python35"
+# "C:\Python35-x64"
+# "C:\Python36"
+# "C:\Python36-x64"
 "C:\Python37"
-"C:\Python37-x64"
+# "C:\Python37-x64"
 )
 
-#$pythons = @("C:\$($env:PYTHON_VER)")
+$pythons = @("C:\$($env:PYTHON_VER)")
 
-# foreach($python in $pythons) {
-#     Build-Wheel $python
-# }
+foreach($python in $pythons) {
+    Build-Wheel $python
+}
 
-# Upload-Artifacts
+Upload-Artifacts
 
-C:\Python37\python.exe setup.py --with-libyaml sdist --formats=gztar
-Push-AppveyorArtifact dist/*
+# C:\Python37\python.exe setup.py --with-libyaml sdist --formats=gztar
+# Push-AppveyorArtifact dist/*
