@@ -132,5 +132,5 @@ $pythons = @(
 # }
 
 # Upload-Artifacts
-make dist
+python3 setup.py --with-libyaml sdist --formats=gztar
 Push-AppveyorArtifact dist/*
