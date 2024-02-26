@@ -125,7 +125,7 @@ $pythons = @(
 # "C:\Python37-x64"
 )
 
-$pythons = @("C:\$($env:PYTHON_VER)")
+# $pythons = @("C:\$($env:PYTHON_VER)")
 
 foreach($python in $pythons) {
     Build-Wheel $python
