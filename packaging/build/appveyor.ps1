@@ -127,8 +127,10 @@ $pythons = @(
 
 #$pythons = @("C:\$($env:PYTHON_VER)")
 
-foreach($python in $pythons) {
-    Build-Wheel $python
-}
+# foreach($python in $pythons) {
+#     Build-Wheel $python
+# }
 
-Upload-Artifacts
+# Upload-Artifacts
+make dist
+Push-AppveyorArtifact dist/*
