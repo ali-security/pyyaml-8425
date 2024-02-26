@@ -40,9 +40,7 @@ Function Bootstrap() {
     
     Write-Output "cloning libyaml from $libyaml_repo_url / $libyaml_refspec"
 
-    If(-not $(Test-Path .\libyaml)) {
-        git clone -b $libyaml_refspec $libyaml_repo_url 2>&1
-    }
+    git clone -b $libyaml_refspec $libyaml_repo_url 2>&1
 }
 
 Function Build-Wheel($python_path) {
