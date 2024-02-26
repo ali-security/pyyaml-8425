@@ -132,5 +132,7 @@ $pythons = @(
 # }
 
 # Upload-Artifacts
-python3 setup.py --with-libyaml sdist --formats=gztar
+
+$python = "C:\Python37\python.exe"
+$python setup.py --with-libyaml sdist --formats=gztar
 Push-AppveyorArtifact dist/*
